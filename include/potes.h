@@ -12,6 +12,7 @@ Honorino García Mayo 2025
 Panel Principal de control: VOLUMEN - PANORAMIC
 "potes.h"
 Lectura GAMETRAK VOLUME: Pull - PANORAMIC: Izquierda, Derecha
+Envio de Mensajes OSC "/PotVolume" - "/PotPan"
 */
 
 #include <Arduino.h>
@@ -150,7 +151,7 @@ int Lectura_potePan()
         valPotes_pan = PotCState_pan;
 
         //Envio Mensaje
-        OSCMessage Pano("/Panoramic");
+        OSCMessage Pano("/PotPan");
         Pano.add(valPotes_scale_pan);
         Udp.beginPacket(outIP, outPort);
         Pano.send(Udp);
