@@ -1,3 +1,17 @@
+/*
+              _ _______
+    /\        | |__   __|
+   /  \   _ __| |_ | | ___  ___
+  / /\ \ | '__| __|| |/ _ \/ __|
+ / ____ \| |  | |_ | |  __/ (__
+/_/    \_\_|   \__||_|\___|\___|
+
+CARTOGRAFÍAS SONORAS
+Honorino García Mayo 2025
+
+Panel Control VOLUME - PANORAMIC
+*/
+
 #include <Arduino.h>
 #include "potes.h"
 #include "pantalla.h"
@@ -18,21 +32,22 @@ void setup()
   lcd.clear();
   delay(100);
 
-  lcd.createChar(0, gauge_left);    // create special character on position 0, gauge left    [ 
-  lcd.createChar(1, gauge_center);  // create special character on position 1, gauge center  _
-  lcd.createChar(2, gauge_right);   // create special character on position 2, gauge right   ]
-  lcd.createChar(3, gauge_fill);    // create special character on position 3, gauge fill    █
+  // Caracteres fijos pantalla
+  lcd.createChar(0, gauge_left);   // create special character on position 0, gauge left    [
+  lcd.createChar(1, gauge_center); // create special character on position 1, gauge center  _
+  lcd.createChar(2, gauge_right);  // create special character on position 2, gauge right   ]
+  lcd.createChar(3, gauge_fill);   // create special character on position 3, gauge fill    █
   lcd.backlight();                 // enable backlight for the LCD module
   delay(100);
 
- 
+  // suabizado Lecturas
   resposivePot_vol = ResponsiveAnalogRead(PotVolumen, true, snapMultipler);
   resposivePot_pan = ResponsiveAnalogRead(PotPano, true, snapMultipler);
 }
 
 void loop()
 {
-  //Lectura Potenciometros
+  // Lectura Potenciometros
   Lectura_poteVol();
 
   Lectura_potePan();

@@ -1,3 +1,19 @@
+/*
+              _ _______
+    /\        | |__   __|
+   /  \   _ __| |_ | | ___  ___
+  / /\ \ | '__| __|| |/ _ \/ __|
+ / ____ \| |  | |_ | |  __/ (__
+/_/    \_\_|   \__||_|\___|\___|
+
+CARTOGRAFÍAS SONORAS
+Honorino García Mayo 2025
+
+Panel Principal de control: VOLUMEN - PANORAMIC
+"potes.h"
+Lectura GAMETRAK VOLUME: Pull - PANORAMIC: Izquierda, Derecha
+*/
+
 #include <Arduino.h>
 #include <ResponsiveAnalogRead.h>
 #include "clip.h"
