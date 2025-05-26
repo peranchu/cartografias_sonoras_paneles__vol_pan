@@ -43,7 +43,7 @@ void ConexionWiFi()
 
     PantallaConexion(estado[0]); // Pinta en Pantalla el estado de la conexión "pantalla.h"
 
-    delay(5000);
+    delay(3000);
 }
 ////// FIN CONEXIÓN WIFI ////////////////
 
