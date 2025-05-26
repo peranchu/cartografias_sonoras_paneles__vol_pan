@@ -52,6 +52,7 @@ void setup()
 
 void loop()
 {
+  //Si existe conexión
   if (conexion)
   {
     // Lectura Potenciometros
