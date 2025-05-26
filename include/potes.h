@@ -100,16 +100,16 @@ int Lectura_poteVol()
         valPotes_scale_vol = map(PotCState_vol, 26, 360, 0, 100);
         valPotes_vol = PotCState_vol;
 
-        //Envio Mensaje
+        // Envio Mensaje
         OSCMessage Volume("/PotVolume");
         Volume.add(valPotes_scale_vol);
-        Udp.beginPacket(outIP, outPort);  //192.168.1.100 : 9999
+        Udp.beginPacket(outIP, outPort); // 192.168.1.100 : 9999
         Volume.send(Udp);
         Udp.endPacket();
         Volume.empty();
 
-        //Serial.print(" Potenciometro: ");
-        //Serial.println(PotCState_vol);
+        // Serial.print(" Potenciometro: ");
+        // Serial.println(PotCState_vol);
 
         // Serial.println();
 
@@ -150,16 +150,16 @@ int Lectura_potePan()
         valPotes_scale_pan = map(PotCState_pan, 0, 1023, 0, 100);
         valPotes_pan = PotCState_pan;
 
-        //Envio Mensaje
+        // Envio Mensaje
         OSCMessage Pano("/PotPan");
         Pano.add(valPotes_scale_pan);
-        Udp.beginPacket(outIP, outPort);  //192.168.1.100 : 9999
+        Udp.beginPacket(outIP, outPort); // 192.168.1.100 : 9999
         Pano.send(Udp);
         Udp.endPacket();
         Pano.empty();
 
-        //Serial.print(" PotenciometroPan: ");
-        //Serial.println(PotCState_pan);
+        // Serial.print(" PotenciometroPan: ");
+        // Serial.println(PotCState_pan);
 
         // Serial.println();
 
@@ -169,3 +169,16 @@ int Lectura_potePan()
     return valPotes_scale_pan;
 }
 ////// FIN LECTURA POTENCIOMETRO PANORAMA /////////
+
+/*
+  _____           _                         __ _              _____
+ / ____|         | |                       / _(_)            / ____|
+| |     __ _ _ __| |_ ___   __ _ _ __ __ _| |_ _  __ _ ___  | (___   ___  _ __   ___  _ __ __ _ ___
+| |    / _` | '__| __/ _ \ / _` | '__/ _` |  _| |/ _` / __|  \___ \ / _ \| '_ \ / _ \| '__/ _` / __|
+| |___| (_| | |  | || (_) | (_| | | | (_| | | | | (_| \__ \  ____) | (_) | | | | (_) | | | (_| \__ \
+ \_____\__,_|_|   \__\___/ \__, |_|  \__,_|_| |_|\__,_|___/ |_____/ \___/|_| |_|\___/|_|  \__,_|___/
+                            __/ |
+                           |___/
+
+ Honorino García Mayo 2025
+*/

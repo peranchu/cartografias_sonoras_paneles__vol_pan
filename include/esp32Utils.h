@@ -16,15 +16,16 @@ Configuración Conexión WiFi
 #include <Arduino.h>
 #include "config.h"
 
-
 WiFiUDP Udp;
 
-//Prototipo Función
+// Prototipo Función
 void PantallaConexion(String);
 
-const char *estado[3] = {"conectado", "desconectado", "conectado"};
+const char *estado[3] = {"conectado", "desconectado", "conectado"}; // Estados conexión
 
-void ConexionWiFi(){
+// Funciín Inicia Conexion WiFi
+void ConexionWiFi()
+{
     Serial.println("");
 
     WiFi.disconnect();
@@ -35,7 +36,7 @@ void ConexionWiFi(){
     Serial.print("iniciado Conexion:\t");
     Serial.println(ssid);
 
-    PantallaConexion(estado[1]);   // "pantalla.h"
+    PantallaConexion(estado[1]); // Pinta en Pantalla el estado de la conexión "pantalla.h"
 
     while (WiFi.status() != WL_CONNECTED)
     {
@@ -49,7 +50,7 @@ void ConexionWiFi(){
     Serial.print("IP Address:\t");
     Serial.println(WiFi.localIP());
 
-    //Inicio UDP
+    // Inicio UDP
     Serial.println("Iniciando UDP...");
     Udp.begin(localPort);
     Serial.print("localPort: ");
@@ -57,3 +58,17 @@ void ConexionWiFi(){
 
     delay(5000);
 }
+////// FIN CONEXIÓN WIFI ////////////////
+
+/*
+  _____           _                         __ _              _____
+ / ____|         | |                       / _(_)            / ____|
+| |     __ _ _ __| |_ ___   __ _ _ __ __ _| |_ _  __ _ ___  | (___   ___  _ __   ___  _ __ __ _ ___
+| |    / _` | '__| __/ _ \ / _` | '__/ _` |  _| |/ _` / __|  \___ \ / _ \| '_ \ / _ \| '__/ _` / __|
+| |___| (_| | |  | || (_) | (_| | | | (_| | | | | (_| \__ \  ____) | (_) | | | | (_) | | | (_| \__ \
+ \_____\__,_|_|   \__\___/ \__, |_|  \__,_|_| |_|\__,_|___/ |_____/ \___/|_| |_|\___/|_|  \__,_|___/
+                            __/ |
+                           |___/
+
+ Honorino García Mayo 2025
+*/

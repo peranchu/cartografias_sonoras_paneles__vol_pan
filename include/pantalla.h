@@ -148,7 +148,8 @@ void PantallaConexion(String state)
         lcd.setCursor(0, 1);
         lcd.print(state);
     }
-    else if(state == "conectado"){
+    else if (state == "conectado")
+    {
         lcd.clear();
         lcd.setCursor(0, 0);
         lcd.print("conexion OK");
@@ -156,3 +157,17 @@ void PantallaConexion(String state)
         lcd.print(WiFi.localIP());
     }
 }
+/////// FIN PANTALLA CONEXIÓN ///////
+
+/*
+  _____           _                         __ _              _____
+ / ____|         | |                       / _(_)            / ____|
+| |     __ _ _ __| |_ ___   __ _ _ __ __ _| |_ _  __ _ ___  | (___   ___  _ __   ___  _ __ __ _ ___
+| |    / _` | '__| __/ _ \ / _` | '__/ _` |  _| |/ _` / __|  \___ \ / _ \| '_ \ / _ \| '__/ _` / __|
+| |___| (_| | |  | || (_) | (_| | | | (_| | | | | (_| \__ \  ____) | (_) | | | | (_) | | | (_| \__ \
+ \_____\__,_|_|   \__\___/ \__, |_|  \__,_|_| |_|\__,_|___/ |_____/ \___/|_| |_|\___/|_|  \__,_|___/
+                            __/ |
+                           |___/
+
+ Honorino García Mayo 2025
+*/
