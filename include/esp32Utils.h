@@ -24,7 +24,7 @@ boolean conexion = false;
 void PantallaConexion(String);
 void WiFiEvent(WiFiEvent_t event);
 
-const char *estado[3] = {"espera", "desconectado", "conectado"}; // Estados conexión
+const char *estado[2] = {"desconectado", "conectado"}; // Estados conexión Pantalla
 
 // Funciín Inicia Conexion WiFi
 void ConexionWiFi()
@@ -41,7 +41,7 @@ void ConexionWiFi()
     Serial.print("iniciado Conexion:\t");
     Serial.println(ssid);
 
-    PantallaConexion(estado[1]); // Pinta en Pantalla el estado de la conexión "pantalla.h"
+    PantallaConexion(estado[0]); // Pinta en Pantalla el estado de la conexión "pantalla.h"
 
     delay(5000);
 }
@@ -54,7 +54,7 @@ void WiFiEvent(WiFiEvent_t event)
     {
     case SYSTEM_EVENT_STA_GOT_IP:
         // Cuando se conecta
-        PantallaConexion(estado[2]);
+        PantallaConexion(estado[1]);
 
         Serial.println("Conexion establecida");
         Serial.print("IP Address:\t");
@@ -69,7 +69,7 @@ void WiFiEvent(WiFiEvent_t event)
         Serial.println("WiFi desconectada");
         conexion = false;
 
-        PantallaConexion(estado[1]);
+        PantallaConexion(estado[0]);
         break;
     }
 }
