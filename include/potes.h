@@ -103,7 +103,7 @@ int Lectura_poteVol()
         //Envio Mensaje
         OSCMessage Volume("/PotVolume");
         Volume.add(valPotes_scale_vol);
-        Udp.beginPacket(outIP, outPort);
+        Udp.beginPacket(outIP, outPort);  //192.168.1.100 : 9999
         Volume.send(Udp);
         Udp.endPacket();
         Volume.empty();
@@ -153,7 +153,7 @@ int Lectura_potePan()
         //Envio Mensaje
         OSCMessage Pano("/PotPan");
         Pano.add(valPotes_scale_pan);
-        Udp.beginPacket(outIP, outPort);
+        Udp.beginPacket(outIP, outPort);  //192.168.1.100 : 9999
         Pano.send(Udp);
         Udp.endPacket();
         Pano.empty();
