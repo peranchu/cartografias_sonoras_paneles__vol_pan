@@ -140,11 +140,11 @@ void Pantalla_inicio()
 // Pantalla CONEXIÓN
 void PantallaConexion(String state)
 {
-    lcd.setCursor(0, 0);
-    lcd.print("conexion:");
-
     if (state == "desconectado")
     {
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("conexion:");
         lcd.setCursor(0, 1);
         lcd.print(state);
     }

@@ -18,8 +18,11 @@ Configuración Conexión WiFi
 
 WiFiUDP Udp;
 
+boolean conexion = false;
+
 // Prototipo Función
 void PantallaConexion(String);
+void WiFiEvent(WiFiEvent_t event);
 
 const char *estado[3] = {"conectado", "desconectado", "conectado"}; // Estados conexión
 
@@ -28,7 +31,8 @@ void ConexionWiFi()
 {
     Serial.println("");
 
-    WiFi.disconnect();
+    WiFi.disconnect(true);
+    WiFi.onEvent(WiFiEvent);
     WiFi.mode(WIFI_STA);
     WiFi.config(ip, gateway, subnet);
     WiFi.begin(ssid, password);
@@ -38,27 +42,38 @@ void ConexionWiFi()
 
     PantallaConexion(estado[1]); // Pinta en Pantalla el estado de la conexión "pantalla.h"
 
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(500);
-        Serial.print(".");
-    }
-
-    PantallaConexion(estado[2]);
-
-    Serial.println("Conexion establecida");
-    Serial.print("IP Address:\t");
-    Serial.println(WiFi.localIP());
-
-    // Inicio UDP
-    Serial.println("Iniciando UDP...");
-    Udp.begin(localPort);
-    Serial.print("localPort: ");
-    Serial.println(localPort);
-
     delay(5000);
 }
 ////// FIN CONEXIÓN WIFI ////////////////
+
+// Manejo de Eventos WiFi
+void WiFiEvent(WiFiEvent_t event)
+{
+    switch (event)
+    {
+    case SYSTEM_EVENT_STA_GOT_IP:
+        // Cuando se conecta
+
+        PantallaConexion(estado[2]);
+
+        Serial.println("Conexion establecida");
+        Serial.print("IP Address:\t");
+        Serial.println(WiFi.localIP());
+
+        Udp.begin(WiFi.localIP(), localPort);
+        conexion = true;
+        break;
+
+    case SYSTEM_EVENT_STA_DISCONNECTED:
+        // Cuanndo se Deconecta
+        Serial.println("WiFi desconectada");
+        conexion = false;
+
+        PantallaConexion(estado[1]);
+        break;
+    }
+}
+////// FIN EVENTOS WIFI /////
 
 /*
   _____           _                         __ _              _____

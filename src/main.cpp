@@ -52,12 +52,15 @@ void setup()
 
 void loop()
 {
-  // Lectura Potenciometros
-  Lectura_poteVol();
+  if (conexion)
+  {
+    // Lectura Potenciometros
+    Lectura_poteVol();
 
-  Lectura_potePan();
+    Lectura_potePan();
 
-  dibujoPantalla(valPotes_scale_vol, valPotes_scale_pan);
+    dibujoPantalla(valPotes_scale_vol, valPotes_scale_pan);
+  }
 }
 
 /*
