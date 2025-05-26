@@ -13,8 +13,8 @@ Panel Control VOLUME - PANORAMIC
 */
 
 #include <Arduino.h>
-#include "potes.h"
 #include "pantalla.h"
+#include "potes.h"
 
 void setup()
 {
@@ -28,6 +28,11 @@ void setup()
   lcd.backlight();
 
   Pantalla_inicio();
+
+  lcd.clear();
+  delay(100);
+
+  ConexionWiFi(); // Inicia La comunicación WiFi
 
   lcd.clear();
   delay(100);

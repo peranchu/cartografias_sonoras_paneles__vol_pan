@@ -15,6 +15,7 @@ Lectura GAMETRAK VOLUME: Pull - PANORAMIC: Izquierda, Derecha
 */
 
 #include <Arduino.h>
+#include "OSCMessage.h"
 #include <ResponsiveAnalogRead.h>
 #include "clip.h"
 
@@ -29,7 +30,6 @@ int valPotes_scale_vol = 0; // escalado para pintar en Pantalla
 int readingPot_vol = 0;
 int PotCState_vol = 0;
 int PotPState_vol = 0;
-const char *envioPot_vol[] = {"/PotVolume"};
 
 int potVar_vol = 0;
 const int TIMEOUT_POT_vol = 300;
@@ -49,7 +49,6 @@ int valPotes_scale_pan = 0; // escalado para pintar en Pantalla
 int readingPot_pan = 0;
 int PotCState_pan = 0;
 int PotPState_pan = 0;
-const char *envioPot_pan[] = {"/PotPan"};
 
 int potVar_pan = 0;
 const int TIMEOUT_POT_pan = 300;
@@ -100,6 +99,14 @@ int Lectura_poteVol()
         valPotes_scale_vol = map(PotCState_vol, 26, 360, 0, 100);
         valPotes_vol = PotCState_vol;
 
+        //Envio Mensaje
+        OSCMessage Volume("/PotVolume");
+        Volume.add(valPotes_scale_vol);
+        Udp.beginPacket(outIP, outPort);
+        Volume.send(Udp);
+        Udp.endPacket();
+        Volume.empty();
+
         //Serial.print(" Potenciometro: ");
         //Serial.println(PotCState_vol);
 
@@ -141,6 +148,14 @@ int Lectura_potePan()
     {
         valPotes_scale_pan = map(PotCState_pan, 0, 1023, 0, 100);
         valPotes_pan = PotCState_pan;
+
+        //Envio Mensaje
+        OSCMessage Pano("/Panoramic");
+        Pano.add(valPotes_scale_pan);
+        Udp.beginPacket(outIP, outPort);
+        Pano.send(Udp);
+        Udp.endPacket();
+        Pano.empty();
 
         //Serial.print(" PotenciometroPan: ");
         //Serial.println(PotCState_pan);

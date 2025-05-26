@@ -16,6 +16,7 @@ Gestión Pantalla Inicio - Principal VOLUMEN - PANORAMIC
 
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
+#include "esp32Utils.h"
 
 LiquidCrystal_I2C lcd(0x26, 16, 2); // Dirección i2c y tamaño 16x2
 
@@ -135,3 +136,23 @@ void Pantalla_inicio()
     delay(demoDelay);
 }
 ////// FIN DIBUJO PANTALLA INICIO //////
+
+// Pantalla CONEXIÓN
+void PantallaConexion(String state)
+{
+    lcd.setCursor(0, 0);
+    lcd.print("conexion:");
+
+    if (state == "desconectado")
+    {
+        lcd.setCursor(0, 1);
+        lcd.print(state);
+    }
+    else if(state == "conectado"){
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("conexion OK");
+        lcd.setCursor(0, 1);
+        lcd.print(WiFi.localIP());
+    }
+}
